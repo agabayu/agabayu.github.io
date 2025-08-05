@@ -1,0 +1,281 @@
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.navbar{
+    background-image: url('header/icons/navbar.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 45px;
+    font-family: "SF pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: white;
+    font-size: 18x;
+    
+}
+.logo{
+    margin-left: 15px;
+    margin-right: 3px;
+    width: 50px;
+    height: 50px;  
+    filter: drop-shadow(-1px 3px 4px rgba(0,0,0,0.1));
+
+}
+.navbar #name{
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 15px;
+    filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.15));
+
+}
+
+.navbar #projectName{
+    font-weight: 400;
+    margin: 0 15px;
+    font-size: 17px;
+    filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.15));
+}
+.navbar a{
+    font-family: "SF pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 0 15px;
+    font-weight: 400;
+    filter: drop-shadow(0px 4px 2.5px rgba(0,0,0,0.15));
+}
+.navbar #help{
+    padding-bottom: 13px;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    color: white;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #9d9292;
+    min-width: 160px;
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 7px;
+    z-index: 1;
+    top: 33px;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 5px 15px;
+    margin: 4px 4px;
+    text-decoration: none;
+    display: block;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+    border-radius: 4px;
+    filter: drop-shadow(0px 0px 0px rgba(0,0,0,0));
+
+}
+
+.dropdown-content a:hover {
+    background-color: #dfd8d8;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+.desktop a{
+    width: 150px;
+    height: 150px;
+    margin-top:15px;
+}
+
+.about{
+    margin-top: 15px;
+    width: 150px;
+    filter: drop-shadow(0px 6px 3.5px rgba(0,0,0,0.15));
+
+}
+.projects{
+    width: 150px;
+    filter: drop-shadow(0px 6px 2.5px rgba(0,0,0,0.25));
+
+}
+.skills{
+    width: 150px;
+    filter: drop-shadow(0px 5px 2.5px rgba(0,0,0,0.25));
+
+}
+.contact{
+    width: 150px;
+    filter: drop-shadow(0px 5px 2.5px rgba(0,0,0,0.25));
+
+}
+
+
+
+.desktop{
+    position:fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: top;
+    flex-direction: column;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    
+    
+    background-image: url('desktop/icons/desktop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.application{
+    background-image: url('desktop/icons/desktop.png');
+    width:100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top:30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing:border-box;
+
+}
+
+.application .header{
+    display:flex;
+    align-items: center;  
+    width:100%;
+    height:50px;
+    
+    background-color: #D9D9D9;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    font-size: 17px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: white;
+    font-weight: 400;
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.2);
+
+}
+.application .exit{
+    margin-left: 30px;
+    margin-right: 40px;
+    margin-top: 5px;
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+    
+}
+
+.headerSeparator{
+    display: inline-block;
+    width: 1px;
+    height: 43px;
+    background-color: #EEEEEE;
+    margin: 0 16px;
+}
+.application .contentFrame{
+    box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+
+    height: 600px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    z-index: 1;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    
+
+
+}
+.application .content{
+    
+    box-sizing: border-box;
+
+    overflow-y: auto;
+    padding: 20px;
+
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 24px;
+}
+
+
+
+.application .content p{
+    margin-top: 40px;
+    margin-left:25px;
+    margin-bottom:80px;
+    font-weight:350;
+    color: #000000;
+
+
+    scroll-padding-right: 150px;
+    width:100%;
+    max-width: 650px;
+    word-break: break-word;
+
+}
+.application .content ul{
+    margin-top: 20px;
+    margin-left:25px;
+    margin-bottom:80px;
+    font-weight:300;
+    color: #000000;
+    scroll-padding-right: 150px;
+    width:100%;
+    max-width: 650px;
+    word-break: break-word;
+}
+#skills .content{
+    font-weight: 450;
+    color: #000000;
+    padding-top: 20px;
+    padding:25px;
+    padding-right: 40px;
+    scroll-padding-right: 150px;
+    width:100vw;
+    word-break: break-word;
+}
+
+
+
