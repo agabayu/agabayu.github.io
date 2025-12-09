@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <title>About Me - angelayou.com</title>
     <link rel="stylesheet" href="../styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 <body>
-    <section class = "navbar">
+    <section class="navbar p-0 justify-content-start pb-5">
         <img src="../header/icons/logo.PNG" alt="Logo" class="logo"/>
         <h1 id = "name">Angela You</h1>
         <h1 id = "projectName">Personal Website</h1>
@@ -26,22 +28,62 @@
     <section class="application" id="aboutMe">
 
         <nav class="header">
-            <a href="../index.html"> <img src="./applicationIcons/exit.png" alt="exit button" class="exit"></a>
+            <img src="./applicationIcons/exit.png" alt="exit button" class="exit">
             <span class="headerSeparator"></span>
-            <p>About Me</p>
+            <p class="pt-3">About Me</p>
         </nav>
         
         
         <nav class="contentFrame">
-            
-            <div class="content">
-                <p>Hello, my name is Angela You, a rising college freshman based in NYC with a deep interest in computer science, user experience design, and realistic art. I’ve spent the past few years exploring tech through programs like Girls Who Code, Kode With Klossy, and Cornell Catalyst, where I built projects ranging from AI chatbots to rescue robots. Whether I’m drawing, coding, or designing, I’m always thinking about how to create personalized, intuitive experiences that make a real impact.</p>
-                <p>I want to use technology to create tools that are accessible, beautiful, and empowering, especially for people who don’t usually see themselves represented in tech. My goal is to blend creativity and logic to build solutions that matter.</p>
+            <div class="content my-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold">Hello, my name is <span>Angela You</span></h1>
+                <p class="text-muted mt-4">Computer Science Student @ Northeastern University</p>
+                <blockquote class="description blockquote bg-dark text-light p-3 rounded mt-5 ">
+                    I’m from Queens, New York, where growing up in a diverse, fast-paced environment taught me adaptability, creativity, and a strong work ethic.                
+                </blockquote>
+                
+            <div class="mb-5">
+                <h2 class="interests m-5">Interests</h2>
+                <div class="container">
+                    <div class="box d-flex flex-column px-2"> 
+                        <h4 class="fw-bold">Piano</h4>
+                        <p class="text-muted">I love learning new songs, and YT has become a staple in providing tutorials for me! I also completed the Nyssma Level 6 Piano Solo with a 99. </p>
+                    </div>
+                    <div class="box d-flex flex-column px-2"> 
+                        <h4 class="fw-bold">Digital Art</h4>
+                        <p class="text-muted">I enjoy creating digital illustrations and exploring different art styles. I used Ibis Paint to creat the icons and images on this website!</p>
+                    </div>
+                </div>
             </div>
+
+            <h2 class="activities m-5">What I've done</h2>
+            <div class="container">
+                <div class="box d-flex flex-column px-2"> 
+                    <h4 class="fw-bold">Uplift Tutoring Club President</h4>
+                    <p class="text-muted">Led a team of 50+ tutors to provide academic support to over 200 students amd organized weekly tutoring sessions.</p>
+                    <a href="https://www.instagram.com/thhs.uplift/" class="instagram-link">
+                        <img src="icons/insta.png" alt="Instagram" />
+                    </a>
+                </div>
+                <div class="box d-flex flex-column px-2">
+                    <h4 class="fw-bold">HTML Workshop Manager @ Bridge2Reach</h4>
+                    <p class="text-muted">Managed a team of volunteers to teach HTML and web development skills to foster students.</p>
+                </div>
+                <div class="box d-flex flex-column px-2">
+                    <h4 class="fw-bold">GirlsWhoCode Club President</h4>
+                    <p class="text-muted">Led a GWC Sister Club and organized bi-weekly meetings for THHS students.</p>
+                </div>
+
+            </div>
+            
             
         </nav>
 
         
     </section>
+    
+    <script src="../main.js"></script>
+
 </body>
 </html>

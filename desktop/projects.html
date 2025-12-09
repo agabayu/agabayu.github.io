@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <title>About Me - angelayou.com</title>
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <section class = "navbar">
+    <section class="navbar p-0 justify-content-start pb-5">
         <img src="../header/icons/logo.PNG" alt="Logo" class="logo"/>
         <h1 id = "name">Angela You</h1>
         <h1 id = "projectName">Personal Website</h1>
@@ -25,21 +26,50 @@
     
     <section class="application" id="projects">
         <nav class="header">
-            <a href="../index.html"> <img src="./applicationIcons/exit.png" alt="exit button" class="exit"></a>
+            <img src="./applicationIcons/exit.png" alt="exit button" class="exit">
             <span class="headerSeparator"></span>
-            <p>Projects</p>
+            <p class="pt-3">Projects</p>
         </nav>
         <nav class="contentFrame">
             <nav class="content">
-                <p>Here are some of my recent projects</p>
-                <p>potential image (?)</p>
-                <p class="projectTitle">project title</p>
-                <p class="projectDescription">description</p>
-            
+                <img src="icons/business.png" class="mb-4" style="width: 40%"/>
+
+                <div class="row g-4">
+                
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="icons/translate.PNG" class="img-fluid rounded-start" alt="Translation Tool Screenshot">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title fw-bold mt-4">Live Translation Tool</h3>
+                                        <p class="card-text">
+                                            A tool that translates your screen content live. Unlike Google Translate’s live camera feature that requires multiple screenshots, this lets you read long pages on your device that has text without having to copy and paste.
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">Mock project / In development</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card shadow-sm text-center py-5">
+                        <p class="text-muted">Project 2 placeholder</p>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card shadow-sm text-center py-5">
+                        <p class="text-muted">Project 3 placeholder</p>
+                    </div>
+                </div>
             </nav>
 
         </nav>
         
     </section>
+    <script src="../main.js"></script>
 </body>
 </html>
