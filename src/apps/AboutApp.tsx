@@ -1,9 +1,9 @@
 import { activities, interests, intro } from '../data/about'
 import type { Card } from '../data/about'
 
-function InfoCard({ card, delay }: { card: Card; delay: number }) {
+function InfoCard({ card }: { card: Card }) {
   return (
-    <div className="info-card reveal" style={{ animationDelay: `${delay}s` }}>
+    <div className="info-card reveal">
       <h4>{card.title}</h4>
       <p>{card.body}</p>
       {card.link && (
@@ -28,32 +28,32 @@ export default function AboutApp() {
         <h1 className="reveal">
           Hello, my name is <span className="accent">{intro.name}</span>
         </h1>
-        <p className="subtitle reveal" style={{ animationDelay: '0.15s' }}>
+        <p className="subtitle reveal">
           {intro.tagline}
         </p>
-        <blockquote className="reveal" style={{ animationDelay: '0.3s' }}>
+        <blockquote className="reveal">
           {intro.quote}
         </blockquote>
       </header>
 
       <section>
-        <h2 className="section-title reveal" style={{ animationDelay: '0.4s' }}>
+        <h2 className="section-title reveal">
           Interests
         </h2>
         <div className="card-grid">
-          {interests.map((card, i) => (
-            <InfoCard key={card.title} card={card} delay={0.5 + i * 0.1} />
+          {interests.map((card) => (
+            <InfoCard key={card.title} card={card} />
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="section-title reveal" style={{ animationDelay: '0.6s' }}>
+        <h2 className="section-title reveal">
           What I&rsquo;ve done
         </h2>
         <div className="card-grid">
-          {activities.map((card, i) => (
-            <InfoCard key={card.title} card={card} delay={0.7 + i * 0.1} />
+          {activities.map((card) => (
+            <InfoCard key={card.title} card={card} />
           ))}
         </div>
       </section>

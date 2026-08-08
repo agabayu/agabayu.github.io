@@ -18,17 +18,13 @@ export default function ContactApp() {
   return (
     <div className="app contact-app">
       <h2 className="section-title reveal">Let&rsquo;s connect</h2>
-      <p className="reveal" style={{ animationDelay: '0.1s' }}>
+      <p className="reveal">
         I&rsquo;m always happy to chat about projects, opportunities, or piano.
       </p>
 
       <div className="contact-list">
-        {contactMethods.map((m, i) => (
-          <div
-            key={m.label}
-            className="contact-card reveal"
-            style={{ animationDelay: `${0.2 + i * 0.1}s` }}
-          >
+        {contactMethods.map((m) => (
+          <div key={m.label} className="contact-card reveal">
             <span className="contact-icon" aria-hidden>
               {m.icon}
             </span>

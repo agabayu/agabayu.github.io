@@ -5,12 +5,8 @@ export default function SkillsApp() {
     <div className="app skills-app">
       <h2 className="section-title reveal">Technical Skills</h2>
       <div className="skill-grid">
-        {technicalSkills.map((group, i) => (
-          <div
-            key={group.category}
-            className="skill-card reveal"
-            style={{ animationDelay: `${0.1 + i * 0.08}s` }}
-          >
+        {technicalSkills.map((group) => (
+          <div key={group.category} className="skill-card reveal">
             <h4>
               <span className="skill-icon" aria-hidden>
                 {group.icon}
@@ -28,16 +24,12 @@ export default function SkillsApp() {
         ))}
       </div>
 
-      <h2 className="section-title reveal" style={{ animationDelay: '0.4s' }}>
+      <h2 className="section-title reveal">
         Soft Skills
       </h2>
       <div className="soft-list">
-        {softSkills.map((skill, i) => (
-          <div
-            key={skill.title}
-            className="soft-item reveal"
-            style={{ animationDelay: `${0.5 + i * 0.08}s` }}
-          >
+        {softSkills.map((skill) => (
+          <div key={skill.title} className="soft-item reveal">
             <h4>{skill.title}</h4>
             <p>{skill.detail}</p>
           </div>

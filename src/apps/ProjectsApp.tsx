@@ -1,12 +1,9 @@
 import { hackathons } from '../data/hackathons'
 import type { Hackathon } from '../data/hackathons'
 
-function HackathonCard({ h, index }: { h: Hackathon; index: number }) {
+function HackathonCard({ h }: { h: Hackathon }) {
   return (
-    <article
-      className="hackathon-card reveal"
-      style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-    >
+    <article className="hackathon-card reveal">
       <div className="hackathon-head">
         <div>
           <h3>{h.project}</h3>
@@ -57,15 +54,14 @@ export default function ProjectsApp() {
     <div className="app projects-app">
       <header className="projects-intro">
         <h2 className="section-title reveal">Hackathons</h2>
-        <p className="reveal" style={{ animationDelay: '0.1s' }}>
-          Projects I&rsquo;ve designed and built under a deadline — with a team,
-          from scratch, in a weekend.
+        <p className="reveal">
+          A selection of projects I&rsquo;ve built at hackathons.
         </p>
       </header>
 
       <div className="hackathon-grid">
         {hackathons.map((h, i) => (
-          <HackathonCard key={`${h.event}-${i}`} h={h} index={i} />
+          <HackathonCard key={`${h.event}-${i}`} h={h} />
         ))}
       </div>
     </div>
