@@ -1,4 +1,5 @@
 import { useDraggable } from '../hooks/useDraggable'
+import { useResizable } from '../hooks/useResizable'
 import { useWindowManager } from '../context/WindowManager'
 import type { AppDefinition, WindowState } from '../types'
 import SettingsPanel from './SettingsPanel'
@@ -15,11 +16,17 @@ interface Props {
  */
 export default function Window({ app, state }: Props) {
   const {
-    close, closeSettings, focus, minimize, move, setPage, settings, updateSettings,
+    close, closeSettings, focus, minimize, move, resize, setPage, settings, updateSettings,
   } = useWindowManager()
   const { onPointerDown, dragging } = useDraggable({
     position: state.position,
     onMove: (p) => move(app.id, p),
+    onStart: () => focus(app.id),
+  })
+  const { onResizePointerDown, resizing } = useResizable({
+    position: state.position,
+    size: state.size,
+    onResize: (size) => resize(app.id, size),
     onStart: () => focus(app.id),
   })
 
@@ -29,7 +36,7 @@ export default function Window({ app, state }: Props) {
 
   return (
     <section
-      className={`window${dragging ? ' dragging' : ''}`}
+      className={`window${dragging ? ' dragging' : ''}${resizing ? ' resizing' : ''}`}
       style={{
         left: state.position.x,
         top: state.position.y,
@@ -98,6 +105,12 @@ export default function Window({ app, state }: Props) {
           <Body />
         )}
       </div>
+      <div
+        className="window-resize-handle"
+        onPointerDown={onResizePointerDown}
+        aria-hidden="true"
+        title="Drag to resize"
+      />
     </section>
   )
 }

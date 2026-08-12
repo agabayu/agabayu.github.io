@@ -5,7 +5,7 @@ import {
   useReducer,
   type ReactNode,
 } from 'react'
-import type { AppDefinition, AppId, AppSettings, Point, WindowState } from '../types'
+import type { AppDefinition, AppId, AppSettings, Point, Size, WindowState } from '../types'
 import { APPS } from '../apps/registry'
 
 /**
@@ -27,6 +27,7 @@ type Action =
   | { type: 'FOCUS'; id: AppId }
   | { type: 'MINIMIZE'; id: AppId }
   | { type: 'MOVE'; id: AppId; position: Point }
+  | { type: 'RESIZE'; id: AppId; size: Size }
   | { type: 'OPEN_SETTINGS'; id: AppId }
   | { type: 'CLOSE_SETTINGS'; id: AppId }
   | { type: 'SET_PAGE'; id: AppId; page: 'content' | 'settings' }
@@ -115,6 +116,14 @@ function reducer(state: State, action: Action): State {
         ),
       }
 
+    case 'RESIZE':
+      return {
+        ...state,
+        windows: state.windows.map((w) =>
+          w.id === action.id ? { ...w, size: action.size } : w,
+        ),
+      }
+
     case 'OPEN_SETTINGS':
       return {
         ...state,
@@ -161,6 +170,7 @@ interface WindowManagerValue {
   focus: (id: AppId) => void
   minimize: (id: AppId) => void
   move: (id: AppId, position: Point) => void
+  resize: (id: AppId, size: Size) => void
   isOpen: (id: AppId) => boolean
   activeAppId: AppId | null
   settings: Record<AppId, AppSettings>
@@ -189,6 +199,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       focus: (id) => dispatch({ type: 'FOCUS', id }),
       minimize: (id) => dispatch({ type: 'MINIMIZE', id }),
       move: (id, position) => dispatch({ type: 'MOVE', id, position }),
+      resize: (id, size) => dispatch({ type: 'RESIZE', id, size }),
       isOpen: (id) => state.windows.some((w) => w.id === id && !w.minimized),
       openSettings: (id) => dispatch({ type: 'OPEN_SETTINGS', id }),
       closeSettings: (id) => dispatch({ type: 'CLOSE_SETTINGS', id }),

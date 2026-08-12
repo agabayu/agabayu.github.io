@@ -14,7 +14,7 @@ export const APPS: AppDefinition[] = [
     title: 'About Me',
     icon: '/desktop/icons/about.PNG',
     Component: AboutApp,
-    defaultSize: { width: 760, height: 560 },
+    defaultSize: { width: 860, height: 650 },
   },
   {
     id: 'skills',

@@ -1,59 +1,55 @@
-import { activities, interests, intro } from '../data/about'
-import type { Card } from '../data/about'
-
-function InfoCard({ card }: { card: Card }) {
-  return (
-    <div className="info-card reveal">
-      <h4>{card.title}</h4>
-      <p>{card.body}</p>
-      {card.link && (
-        <a
-          className="card-badge"
-          href={card.link.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={card.link.label}
-        >
-          <img src={card.link.icon} alt={card.link.label} />
-        </a>
-      )}
-    </div>
-  )
-}
+import { beyondCode, focusAreas, intro } from '../data/about'
 
 export default function AboutApp() {
   return (
     <div className="app about-app">
-      <header className="about-hero">
-        <h1 className="reveal">
-          Hello, my name is <span className="accent">{intro.name}</span>
-        </h1>
-        <p className="subtitle reveal">
-          {intro.tagline}
-        </p>
-        <blockquote className="reveal">
-          {intro.quote}
-        </blockquote>
+      <header className="about-hero reveal">
+        <div className="about-doodles" aria-hidden>
+          <span>✦</span><span>⌁</span><span>♪</span>
+        </div>
+        <div className="about-heading">
+          <p className="about-kicker">Hi, I&rsquo;m</p>
+          <h1><span className="accent">{intro.name}</span>.</h1>
+          <p className="subtitle">{intro.tagline}</p>
+          <div className="about-location"><span aria-hidden>⌖</span> Queens, NY → Boston, MA</div>
+        </div>
+        <div className="about-story">
+          {intro.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
       </header>
 
-      <section>
-        <h2 className="section-title reveal">
-          Interests
-        </h2>
-        <div className="card-grid">
-          {interests.map((card) => (
-            <InfoCard key={card.title} card={card} />
+      <section className="about-currently">
+        <div className="about-section-heading reveal">
+          <span className="handwritten">currently...</span>
+          <h2>Learning by making things</h2>
+        </div>
+        <div className="focus-path">
+          {focusAreas.map((card, index) => (
+            <article key={card.title} className="focus-item reveal">
+              <span className="focus-number">0{index + 1}</span>
+              <div>
+                <span className="card-eyebrow">{card.eyebrow}</span>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="section-title reveal">
-          What I&rsquo;ve done
-        </h2>
-        <div className="card-grid">
-          {activities.map((card) => (
-            <InfoCard key={card.title} card={card} />
+      <section className="about-beyond reveal">
+        <div className="beyond-intro">
+          <span className="handwritten">also me →</span>
+          <h2>More than my GitHub</h2>
+          <p>I like when technical and creative ways of thinking overlap.</p>
+        </div>
+        <div className="note-stack">
+          {beyondCode.map((card, index) => (
+            <article key={card.title} className={`personal-note note-${index + 1}`}>
+              <span className="note-tape" aria-hidden />
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
           ))}
         </div>
       </section>

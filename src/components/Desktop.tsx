@@ -34,7 +34,6 @@ export default function Desktop() {
         return <Window key={state.id} app={app} state={state} />
       })}
 
-      <p className="desktop-hint">Double-click an icon to open it ✨</p>
     </main>
   )
 }

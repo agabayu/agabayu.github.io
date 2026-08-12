@@ -2,45 +2,44 @@
 
 export const intro = {
   name: 'Angela You',
-  tagline: 'Computer Science + Business Student @ Northeastern University',
-  quote:
-    'I’m from Queens, New York, where growing up in a diverse, fast-paced environment taught me adaptability, creativity, and a strong work ethic.',
+  tagline: 'Computer Science + Business Administration @ Northeastern',
+  paragraphs: [
+    'I’m a student from Queens, New York who likes building things and understanding what makes them work. Most of my experience so far has been on the frontend, where I’ve used React, JavaScript, HTML, and CSS to turn ideas into usable interfaces.',
+    'Right now, I’m working toward a fuller picture of software development—learning how APIs, databases, authentication, and backend architecture connect to the experiences people see on screen. When something doesn’t make sense, I like going back, finding the gap, and figuring out why.',
+  ],
 }
 
 export interface Card {
   title: string
   body: string
-  /** Optional link shown as a small icon in the corner of the card. */
-  link?: { href: string; icon: string; label: string }
+  eyebrow?: string
 }
 
-export const interests: Card[] = [
+export const focusAreas: Card[] = [
   {
-    title: 'Piano',
-    body: 'I love learning new songs — YouTube tutorials are a staple for me. I completed the NYSSMA Level 6 Piano Solo with a score of 99.',
+    eyebrow: 'Building',
+    title: 'From interfaces to full-stack systems',
+    body: 'I’m building on my frontend foundation through projects like Oasis while learning Supabase, PostgreSQL, authentication, database schemas, and Row Level Security.',
   },
   {
-    title: 'Digital Art',
-    body: 'I enjoy creating digital illustrations and exploring different art styles. I drew every icon and image on this website in Ibis Paint!',
+    eyebrow: 'Exploring',
+    title: 'Research + real-world questions',
+    body: 'With Northeastern’s NU DATA Initiative, I’ve supported web-based data collection and research on digital platforms—including spotting problems in collection workflows.',
+  },
+  {
+    eyebrow: 'Practicing',
+    title: 'How software teams work',
+    body: 'Through AeroNU and coursework, I’ve gained experience with CI/CD, GitHub Actions, testing, object-oriented design, APIs, and software architecture.',
   },
 ]
 
-export const activities: Card[] = [
+export const beyondCode: Card[] = [
   {
-    title: 'Uplift Tutoring Club — President',
-    body: 'Led a team of 50+ tutors providing academic support to 200+ students and organized weekly tutoring sessions.',
-    link: {
-      href: 'https://www.instagram.com/thhs.uplift/',
-      icon: '/desktop/icons/insta.png',
-      label: 'Uplift on Instagram',
-    },
+    title: 'Technology meets business',
+    body: 'I’m drawn to product thinking, research, entrepreneurship, and the practical questions behind what gets built and why.',
   },
   {
-    title: 'HTML Workshop Manager @ Bridge2Reach',
-    body: 'Managed a team of volunteers teaching HTML and web development skills to foster students.',
-  },
-  {
-    title: 'Girls Who Code Club — President',
-    body: 'Led a Girls Who Code sister club and organized bi-weekly meetings for THHS students.',
+    title: 'A creative side',
+    body: 'Outside of class and projects, I draw digital art and play piano. I also illustrated the icons and images throughout this website.',
   },
 ]
