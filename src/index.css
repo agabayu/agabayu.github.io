@@ -165,6 +165,10 @@ body {
   animation: fade-in 0.16s ease-out;
 }
 
+.dropdown-content.app-menu{
+  margin-left: 10px;
+}
+
 .app-menu {
   min-width: 190px;
 }
