@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { APPS } from '../apps/registry'
 import { useWindowManager } from '../context/WindowManager'
 import DesktopIcon from './DesktopIcon'
@@ -6,12 +7,24 @@ import Window from './Window'
 /** The desktop background, its icon column, and every open window. */
 export default function Desktop() {
   const { windows, open } = useWindowManager()
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   return (
-    <main className="desktop">
+    <main
+      className="desktop"
+      onPointerDown={(e) => {
+        if (!(e.target as HTMLElement).closest('.desktop-icon')) setSelectedId(null)
+      }}
+    >
       <div className="desktop-icons">
         {APPS.map((app) => (
-          <DesktopIcon key={app.id} app={app} onOpen={() => open(app.id)} />
+          <DesktopIcon
+            key={app.id}
+            app={app}
+            selected={selectedId === app.id}
+            onSelect={() => setSelectedId(app.id)}
+            onOpen={() => open(app.id)}
+          />
         ))}
       </div>
 

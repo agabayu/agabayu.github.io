@@ -3,8 +3,7 @@
 My personal website, styled like a computer desktop. Click around and open the
 "applications" to explore my portfolio. All icons and images are drawn by me.
 
-Originally hand-written in HTML/CSS, now rebuilt as a single-page app with
-**React + TypeScript + Vite**. Each app opens in a draggable, focusable macOS-style
+Built with **React + TypeScript + Vite**. Each app opens in a draggable, focusable macOS-style
 window managed by a small `useReducer`-based window manager.
 
 ~ Angela You
@@ -36,13 +35,7 @@ All page content lives in plain data files under `src/data/` — edit these:
 | `src/data/hackathons.ts`| Projects window: the hackathon cards      |
 | `src/data/contact.ts`   | Contact links                             |
 
-**To add a hackathon**, open `src/data/hackathons.ts`, copy one `{ ... }` block,
-and fill it in. Blank fields (e.g. `award: ''`) are hidden automatically.
-
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the app
 and publishes `dist/` to GitHub Pages.
-
-**One-time setup:** in the repo, go to **Settings → Pages → Build and deployment
-→ Source** and select **GitHub Actions**.

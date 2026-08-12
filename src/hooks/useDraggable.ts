@@ -48,7 +48,7 @@ export function useDraggable({ position, onMove, onStart }: UseDraggableOptions)
       }
       // Clamp so the title bar always stays grabbable on screen.
       next.x = Math.min(Math.max(next.x, -width * 0.4), width - 80)
-      next.y = Math.min(Math.max(next.y, 33), height - 60)
+      next.y = Math.min(Math.max(next.y, 45), height - 60)
       latest.current.onMove(next)
     }
 

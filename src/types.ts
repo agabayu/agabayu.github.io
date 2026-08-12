@@ -37,4 +37,11 @@ export interface WindowState {
   /** Stacking order — the highest value is the focused window. */
   z: number
   minimized: boolean
+  activePage: 'content' | 'settings'
+  settingsOpen: boolean
+}
+
+export interface AppSettings {
+  theme: 'light' | 'dark'
+  textSize: number
 }
