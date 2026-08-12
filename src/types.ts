@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react'
 
 /** The unique id of every launchable desktop application. */
-export type AppId = 'about' | 'skills' | 'projects' | 'contact'
+export type AppId = 'about' | 'skills' | 'projects' | 'contact' | 'welcome' | 'site-info'
 
 /** A screen coordinate / size pair. */
 export interface Point {
@@ -27,6 +27,8 @@ export interface AppDefinition {
   Component: ComponentType
   /** Default size of the window when first opened. */
   defaultSize: Size
+  /** Whether the app should appear as a folder on the desktop. */
+  showOnDesktop?: boolean
 }
 
 /** The live, mutable state of a single open window instance. */

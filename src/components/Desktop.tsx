@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { APPS } from '../apps/registry'
+import { APPS, DESKTOP_APPS } from '../apps/registry'
 import { useWindowManager } from '../context/WindowManager'
 import DesktopIcon from './DesktopIcon'
 import Window from './Window'
@@ -17,7 +17,7 @@ export default function Desktop() {
       }}
     >
       <div className="desktop-icons">
-        {APPS.map((app) => (
+        {DESKTOP_APPS.map((app) => (
           <DesktopIcon
             key={app.id}
             app={app}

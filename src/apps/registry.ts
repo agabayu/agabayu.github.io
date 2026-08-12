@@ -3,6 +3,8 @@ import AboutApp from './AboutApp'
 import SkillsApp from './SkillsApp'
 import ProjectsApp from './ProjectsApp'
 import ContactApp from './ContactApp'
+import SiteInfoApp from './SiteInfoApp'
+import WelcomeApp from './WelcomeApp'
 
 /**
  * The single source of truth for every desktop app. Adding an entry here
@@ -37,4 +39,22 @@ export const APPS: AppDefinition[] = [
     Component: ContactApp,
     defaultSize: { width: 560, height: 460 },
   },
+  {
+    id: 'welcome',
+    title: 'Welcome',
+    icon: '/header/icons/logo.PNG',
+    Component: WelcomeApp,
+    defaultSize: { width: 560, height: 510 },
+    showOnDesktop: false,
+  },
+  {
+    id: 'site-info',
+    title: 'About This Site',
+    icon: '/header/icons/logo.PNG',
+    Component: SiteInfoApp,
+    defaultSize: { width: 560, height: 520 },
+    showOnDesktop: false,
+  },
 ]
+
+export const DESKTOP_APPS = APPS.filter((app) => app.showOnDesktop !== false)
