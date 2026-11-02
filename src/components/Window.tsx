@@ -1,5 +1,5 @@
 import { useDraggable } from '../hooks/useDraggable'
-import { useResizable } from '../hooks/useResizable'
+import { CORNERS, useResizable } from '../hooks/useResizable'
 import { useWindowManager } from '../context/WindowManager'
 import type { AppDefinition, WindowState } from '../types'
 import SettingsPanel from './SettingsPanel'
@@ -23,13 +23,15 @@ export default function Window({ app, state }: Props) {
     onMove: (p) => move(app.id, p),
     onStart: () => focus(app.id),
   })
-  const { onResizePointerDown, resizing } = useResizable({
+  const { startResize, resizing } = useResizable({
     position: state.position,
     size: state.size,
-    onResize: (size) => resize(app.id, size),
+    onResize: ({ position, size }) => {
+      move(app.id, position)
+      resize(app.id, size)
+    },
     onStart: () => focus(app.id),
   })
-
   if (state.minimized) return null
 
   const Body = app.Component
@@ -105,12 +107,15 @@ export default function Window({ app, state }: Props) {
           <Body />
         )}
       </div>
-      <div
-        className="window-resize-handle"
-        onPointerDown={onResizePointerDown}
-        aria-hidden="true"
-        title="Drag to resize"
-      />
+      {CORNERS.map((corner) => (
+        <div
+          key={corner}
+          className={`window-resize-handle ${corner}`}
+          onPointerDown={startResize(corner)}
+          aria-hidden="true"
+          title="Drag to resize"
+        />
+      ))}
     </section>
   )
 }

@@ -1,6 +1,6 @@
 const tips = [
   { symbol: '↗', title: 'Open something', detail: 'Double-click a folder on the desktop, or choose an app from Files in the menu bar.' },
-  { symbol: '⌁', title: 'Move & resize', detail: 'Drag a window by its top bar. Drag its bottom-right corner to make it larger or smaller.' },
+  { symbol: '⌁', title: 'Move & resize', detail: 'Drag a window by its top bar. Drag any of its corners to make it larger or smaller.' },
   { symbol: '●', title: 'Window controls', detail: 'Use the red button to close a window and the yellow button to minimize it.' },
   { symbol: 'Aa', title: 'Make it yours', detail: 'With a window active, open Personal Website → Window Settings to change its theme or text size.' },
 ]

@@ -80,7 +80,6 @@ export default function MenuBar() {
                 <span>Files</span><span className="submenu-arrow" aria-hidden>›</span>
               </button>
               <div className="dropdown-content files-menu" role="menu">
-                <p className="menu-label">Open a file</p>
                 {DESKTOP_APPS.map((app) => (
                   <button key={app.id} type="button" role="menuitem" onClick={() => launch(app.id)}>
                     <img src={app.icon} alt="" aria-hidden />
