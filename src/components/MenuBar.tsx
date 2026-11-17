@@ -13,12 +13,24 @@ export default function MenuBar() {
 
   useEffect(() => {
     if (menuOpen === null) return
+    // Close on any click outside a menu button or its dropdown — including
+    // empty space in the menu bar itself.
     const onClick = (event: MouseEvent) => {
-      if (!menusRef.current?.contains(event.target as Node)) setMenuOpen(null)
+      const target = event.target as Element
+      const insideMenu = menusRef.current?.contains(target) && target.closest('.dropdown')
+      if (!insideMenu) setMenuOpen(null)
     }
     document.addEventListener('mousedown', onClick)
     return () => document.removeEventListener('mousedown', onClick)
   }, [menuOpen])
+
+  /** Clicking a menu-bar button toggles its menu. */
+  const toggleMenu = (id: Exclude<MenuId, null>) =>
+    setMenuOpen((current) => current === id ? null : id)
+
+  /** While any menu is open, hovering another menu-bar button switches to it. */
+  const switchMenuOnHover = (id: Exclude<MenuId, null>) =>
+    setMenuOpen((current) => current === null ? null : id)
 
   const launch = (id: Parameters<typeof open>[0]) => {
     open(id)
@@ -35,7 +47,8 @@ export default function MenuBar() {
           className="menubar-project menubar-link"
           aria-expanded={menuOpen === 'website'}
           aria-haspopup="menu"
-          onClick={() => setMenuOpen((current) => current === 'website' ? null : 'website')}
+          onClick={() => toggleMenu('website')}
+          onMouseEnter={() => switchMenuOnHover('website')}
         >
           Personal Website
         </button>
@@ -66,7 +79,8 @@ export default function MenuBar() {
           className="menubar-link"
           aria-expanded={menuOpen === 'help'}
           aria-haspopup="menu"
-          onClick={() => setMenuOpen((current) => current === 'help' ? null : 'help')}
+          onClick={() => toggleMenu('help')}
+          onMouseEnter={() => switchMenuOnHover('help')}
         >
           Help
         </button>

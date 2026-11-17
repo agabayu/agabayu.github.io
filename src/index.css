@@ -72,7 +72,7 @@ body {
 .menubar-project {
   font-size: 17px;
   font-weight: 400;
-  margin: 0 6px 0 10px;
+  margin: 0 2px 0 10px;
   filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.15));
 }
 
@@ -100,30 +100,24 @@ body {
   border: none;
   border-radius: 7px;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 4px 8px;
   filter: drop-shadow(0 4px 2.5px rgba(0, 0, 0, 0.15));
-  transition: background 0.16s ease, box-shadow 0.16s ease;
 }
 
+/* Glow shown only while the button's menu is open (no hover effect).
+   background / blur match .dropdown-content button::before; the inset is
+   larger and border-radius: 999px makes it a pill (straight sides,
+   semicircle ends).
+   inset: <top/bottom> <left/right> — negative values grow the oval. */
 .menubar-link::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 2px 1px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.1);
-  filter: blur(4px);
+  inset: 1px -4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(3px);
   opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.menubar-link:hover {
-  background: transparent;
-  box-shadow: none;
-}
-
-.menubar-link:hover::before {
-  opacity: 1;
 }
 
 .menubar-link[aria-expanded="true"] {
@@ -132,8 +126,6 @@ body {
 }
 
 .menubar-link[aria-expanded="true"]::before {
-  background: rgba(255, 255, 255, 0.2);
-  filter: blur(3px);
   opacity: 1;
 }
 
@@ -162,15 +154,17 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  animation: fade-in 0.16s ease-out;
 }
 
 .dropdown-content.app-menu{
   margin-left: 10px;
 }
 
+/* Size to the longest item: narrow with just "About This Site", wider once
+   a window's actions (e.g. "Close Projects") are listed. */
 .app-menu {
-  min-width: 190px;
+  width: max-content;
+  min-width: 0;
 }
 
 .app-menu button:last-child {
@@ -256,15 +250,6 @@ body {
   background: rgba(255, 255, 255, 0.16);
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .dropdown-content button {
   position: relative;
   isolation: isolate;
@@ -279,19 +264,19 @@ body {
   font-family: var(--font-sf);
   font-size: 15px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.32);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Same look as the open menu-bar button's glow (.menubar-link::before),
+   with a tighter inset to fit inside the dropdown panel. */
 .dropdown-content button::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -1px -2px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.14);
-  filter: blur(4px);
+  inset: 2px 1px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.2);
+  filter: blur(3px);
   opacity: 0;
-  transition: opacity 0.2s ease;
 }
 
 .dropdown-content button:hover {
@@ -733,8 +718,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .window,
-  .dropdown-content {
+  .window {
     animation: none;
     opacity: 1;
   }
