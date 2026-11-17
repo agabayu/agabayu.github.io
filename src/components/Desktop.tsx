@@ -1,13 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { APPS, DESKTOP_APPS } from '../apps/registry'
 import { useWindowManager } from '../context/WindowManager'
+import { notifications } from '../data/notifications'
 import DesktopIcon from './DesktopIcon'
 import Window from './Window'
 
+const SEEN_UPDATES_KEY = 'seen-updates'
+
+/**
+ * True for first-time visitors, and for returning visitors when the
+ * Notification Center has a card they haven't seen yet. Records the current
+ * cards as seen either way, so it only fires once per new update.
+ */
+function shouldShowSiteInfo(): boolean {
+  const current = notifications.map((n) => n.id)
+  try {
+    const saved = localStorage.getItem(SEEN_UPDATES_KEY)
+    localStorage.setItem(SEEN_UPDATES_KEY, JSON.stringify(current))
+    if (saved === null) return true // first visit
+    const seen = new Set<string>(JSON.parse(saved))
+    return current.some((id) => !seen.has(id))
+  } catch {
+    return false // storage unavailable: don't pop it up on every visit
+  }
+}
+
 /** The desktop background, its icon column, and every open window. */
 export default function Desktop() {
-  const { windows, open } = useWindowManager()
+  const { windows, open, openCentered } = useWindowManager()
   const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  // Greet first-time visitors (and anyone returning after a new update) with
+  // the About This Site window, centered on screen.
+  useEffect(() => {
+    if (shouldShowSiteInfo()) openCentered('site-info')
+  }, []) // once, on page load
 
   return (
     <main

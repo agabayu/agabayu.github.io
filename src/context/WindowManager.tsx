@@ -22,7 +22,7 @@ interface State {
 }
 
 type Action =
-  | { type: 'OPEN'; app: AppDefinition }
+  | { type: 'OPEN'; app: AppDefinition; position?: Point; size?: Size }
   | { type: 'CLOSE'; id: AppId }
   | { type: 'FOCUS'; id: AppId }
   | { type: 'MINIMIZE'; id: AppId }
@@ -88,8 +88,8 @@ function reducer(state: State, action: Action): State {
           ...state.windows,
           {
             id: action.app.id,
-            position: nextPosition(state.windows.length),
-            size: action.app.defaultSize,
+            position: action.position ?? nextPosition(state.windows.length),
+            size: action.size ?? action.app.defaultSize,
             z,
             minimized: false,
             activePage: 'content',
@@ -198,6 +198,8 @@ function reducer(state: State, action: Action): State {
 interface WindowManagerValue {
   windows: WindowState[]
   open: (id: AppId) => void
+  /** Open a window centered in the desktop area (shrunk to fit if needed). */
+  openCentered: (id: AppId) => void
   close: (id: AppId) => void
   focus: (id: AppId) => void
   minimize: (id: AppId) => void
@@ -229,6 +231,19 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
           .filter((w) => !w.minimized)
           .reduce<WindowState | null>((top, w) => (!top || w.z > top.z ? w : top), null)?.id ?? null,
       open: (id) => dispatch({ type: 'OPEN', app: findApp(id) }),
+      openCentered: (id) => {
+        const app = findApp(id)
+        const { position: area, size: screen } = screenBounds()
+        const size = {
+          width: Math.min(app.defaultSize.width, screen.width),
+          height: Math.min(app.defaultSize.height, screen.height),
+        }
+        const position = {
+          x: Math.round((screen.width - size.width) / 2),
+          y: Math.round(area.y + (screen.height - size.height) / 2),
+        }
+        dispatch({ type: 'OPEN', app, position, size })
+      },
       close: (id) => dispatch({ type: 'CLOSE', id }),
       focus: (id) => dispatch({ type: 'FOCUS', id }),
       minimize: (id) => dispatch({ type: 'MINIMIZE', id }),
