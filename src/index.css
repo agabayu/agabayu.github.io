@@ -162,11 +162,11 @@ body {
   margin-left: 10px;
 }
 
-/* Size to the longest item: narrow with just "About This Site", wider once
-   a window's actions (e.g. "Close Projects") are listed. */
+/* Same width as the Help menu (165px), growing to the right only if a long
+   window name (e.g. "Close About This Site") needs more room. */
 .app-menu {
   width: max-content;
-  min-width: 0;
+  min-width: 165px;
 }
 
 .app-menu button:last-child {
