@@ -41,6 +41,8 @@ export interface WindowState {
   minimized: boolean
   activePage: 'content' | 'settings'
   settingsOpen: boolean
+  /** Size/position to go back to after the green button filled the screen. */
+  restore?: { position: Point; size: Size }
 }
 
 export interface AppSettings {

@@ -16,7 +16,7 @@ interface Props {
  */
 export default function Window({ app, state }: Props) {
   const {
-    close, closeSettings, focus, minimize, move, resize, setPage, settings, updateSettings,
+    close, closeSettings, focus, minimize, move, resize, setPage, settings, toggleMaximize, updateSettings,
   } = useWindowManager()
   const { onPointerDown, dragging } = useDraggable({
     position: state.position,
@@ -64,7 +64,12 @@ export default function Window({ app, state }: Props) {
             aria-label="Minimize window"
             onClick={() => minimize(app.id)}
           />
-          <span className="light disabled" aria-hidden />
+          <button
+            type="button"
+            className="light maximize"
+            aria-label={state.restore ? 'Restore window size' : 'Fit window to screen'}
+            onClick={() => toggleMaximize(app.id)}
+          />
         </div>
         {state.settingsOpen ? (
           <div className="window-tabs" data-no-drag>

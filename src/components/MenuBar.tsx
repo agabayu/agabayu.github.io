@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { APPS, DESKTOP_APPS } from '../apps/registry'
 import { useWindowManager } from '../context/WindowManager'
+import NotificationCenter from './NotificationCenter'
 
 type MenuId = 'website' | 'help' | null
 
@@ -8,6 +9,7 @@ type MenuId = 'website' | 'help' | null
 export default function MenuBar() {
   const { activeAppId, close, open, openSettings } = useWindowManager()
   const [menuOpen, setMenuOpen] = useState<MenuId>(null)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
   const menusRef = useRef<HTMLElement>(null)
   const activeApp = APPS.find((app) => app.id === activeAppId)
 
@@ -23,6 +25,25 @@ export default function MenuBar() {
     document.addEventListener('mousedown', onClick)
     return () => document.removeEventListener('mousedown', onClick)
   }, [menuOpen])
+
+  // Close the Notification Center on Escape or any click outside it (the name
+  // button handles its own toggle).
+  useEffect(() => {
+    if (!notificationsOpen) return
+    const onClick = (event: MouseEvent) => {
+      const target = event.target as Element
+      if (!target.closest('.notification-center, .menubar-name')) setNotificationsOpen(false)
+    }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setNotificationsOpen(false)
+    }
+    document.addEventListener('mousedown', onClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [notificationsOpen])
 
   /** Clicking a menu-bar button toggles its menu. */
   const toggleMenu = (id: Exclude<MenuId, null>) =>
@@ -106,7 +127,17 @@ export default function MenuBar() {
         )}
       </div>
 
-      <span className="menubar-name">Angela You</span>
+      <button
+        type="button"
+        className="menubar-name menubar-link"
+        aria-expanded={notificationsOpen}
+        aria-label="Angela You — open Notification Center"
+        onClick={() => setNotificationsOpen((current) => !current)}
+      >
+        Angela You
+      </button>
+
+      <NotificationCenter open={notificationsOpen} onClose={() => setNotificationsOpen(false)} />
     </nav>
   )
 }

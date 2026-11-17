@@ -33,6 +33,8 @@ All page content lives in plain data files under `src/data/` — edit these:
 | `src/data/about.ts`     | About Me: bio, interests, activities      |
 | `src/data/skills.ts`    | Skills: technical groups + soft skills    |
 | `src/data/hackathons.ts`| Projects window: the hackathon cards      |
+| `src/data/projects.ts`  | Projects window: the Projects section     |
+| `src/data/notifications.ts` | Notification Center update cards      |
 | `src/data/contact.ts`   | Contact links                             |
 
 ## Deployment

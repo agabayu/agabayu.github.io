@@ -14,6 +14,8 @@ export interface HackathonLink {
 }
 
 export interface Hackathon {
+  /** Optional anchor id so a notification can link to this card. */
+  id?: string
   /** Name of the hackathon event, e.g. "HackBeanpot 2026". */
   event: string
   /** Name of the project you built there. */

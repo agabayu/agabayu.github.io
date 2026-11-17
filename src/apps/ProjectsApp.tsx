@@ -1,9 +1,10 @@
 import { hackathons } from '../data/hackathons'
+import { projects } from '../data/projects'
 import type { Hackathon } from '../data/hackathons'
 
 function HackathonCard({ h }: { h: Hackathon }) {
   return (
-    <article className="hackathon-card reveal">
+    <article id={h.id} className="hackathon-card reveal">
       <div className="hackathon-head">
         <div>
           <h3>{h.project}</h3>
@@ -52,6 +53,23 @@ function HackathonCard({ h }: { h: Hackathon }) {
 export default function ProjectsApp() {
   return (
     <div className="app projects-app">
+      {projects.length > 0 && (
+        <>
+          <header className="projects-intro">
+            <h2 className="section-title reveal">Projects</h2>
+            <p className="reveal">
+              What I&rsquo;m building with teams and organizations.
+            </p>
+          </header>
+
+          <div className="hackathon-grid projects-grid">
+            {projects.map((p, i) => (
+              <HackathonCard key={`${p.project}-${i}`} h={p} />
+            ))}
+          </div>
+        </>
+      )}
+
       <header className="projects-intro">
         <h2 className="section-title reveal">Hackathons</h2>
         <p className="reveal">

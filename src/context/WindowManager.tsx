@@ -28,6 +28,7 @@ type Action =
   | { type: 'MINIMIZE'; id: AppId }
   | { type: 'MOVE'; id: AppId; position: Point }
   | { type: 'RESIZE'; id: AppId; size: Size }
+  | { type: 'TOGGLE_MAXIMIZE'; id: AppId; bounds: { position: Point; size: Size } }
   | { type: 'OPEN_SETTINGS'; id: AppId }
   | { type: 'CLOSE_SETTINGS'; id: AppId }
   | { type: 'SET_PAGE'; id: AppId; page: 'content' | 'settings' }
@@ -47,6 +48,16 @@ const INITIAL_STATE: State = {
       }
     }),
   ) as Record<AppId, AppSettings>,
+}
+
+/** The desktop area below the menu bar — what the green button fills. */
+function screenBounds(): { position: Point; size: Size } {
+  const menuBar =
+    parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menubar-h'), 10) || 45
+  return {
+    position: { x: 0, y: menuBar },
+    size: { width: window.innerWidth, height: window.innerHeight - menuBar },
+  }
 }
 
 /** Cascade newly opened windows so they don't stack exactly on top of one another. */
@@ -124,6 +135,27 @@ function reducer(state: State, action: Action): State {
         ),
       }
 
+    case 'TOGGLE_MAXIMIZE': {
+      const { bounds } = action
+      const z = state.topZ + 1
+      return {
+        ...state,
+        topZ: z,
+        windows: state.windows.map((w) => {
+          if (w.id !== action.id) return w
+          const fillsScreen =
+            w.position.x === bounds.position.x && w.position.y === bounds.position.y &&
+            w.size.width === bounds.size.width && w.size.height === bounds.size.height
+          // Already filling the screen → go back to where it was.
+          if (fillsScreen && w.restore) {
+            return { ...w, z, position: w.restore.position, size: w.restore.size, restore: undefined }
+          }
+          // Otherwise remember the current spot and fill the screen.
+          return { ...w, z, restore: { position: w.position, size: w.size }, ...bounds }
+        }),
+      }
+    }
+
     case 'OPEN_SETTINGS':
       return {
         ...state,
@@ -171,6 +203,8 @@ interface WindowManagerValue {
   minimize: (id: AppId) => void
   move: (id: AppId, position: Point) => void
   resize: (id: AppId, size: Size) => void
+  /** Green traffic light: fill the screen below the menu bar, or restore. */
+  toggleMaximize: (id: AppId) => void
   isOpen: (id: AppId) => boolean
   activeAppId: AppId | null
   settings: Record<AppId, AppSettings>
@@ -200,6 +234,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       minimize: (id) => dispatch({ type: 'MINIMIZE', id }),
       move: (id, position) => dispatch({ type: 'MOVE', id, position }),
       resize: (id, size) => dispatch({ type: 'RESIZE', id, size }),
+      toggleMaximize: (id) => dispatch({ type: 'TOGGLE_MAXIMIZE', id, bounds: screenBounds() }),
       isOpen: (id) => state.windows.some((w) => w.id === id && !w.minimized),
       openSettings: (id) => dispatch({ type: 'OPEN_SETTINGS', id }),
       closeSettings: (id) => dispatch({ type: 'CLOSE_SETTINGS', id }),
