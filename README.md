@@ -1,5 +1,7 @@
 # angelayou.com — desktop-themed portfolio
 
+angelay.netlify.app
+
 My personal website, styled like a computer desktop. Click around and open the
 "applications" to explore my portfolio. All icons and images are drawn by me.
 
